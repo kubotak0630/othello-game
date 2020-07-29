@@ -1,22 +1,30 @@
 <template>
   <div class="game-wrraper">
     <div class="button-container">
-      <el-button type="primary" class="menu-button" @click="onTitleButtonClick">タイトルに戻る</el-button>
-      <el-button type="primary" class="reset-button" @click="onResetButtonClick">リセット</el-button>
+      <el-button type="primary" class="menu-button" @click="onTitleButtonClick"
+        >タイトルに戻る</el-button
+      >
+      <el-button type="primary" class="reset-button" @click="onResetButtonClick"
+        >リセット</el-button
+      >
     </div>
     <div class="cpu-info">
-      CPU {{cpuAttackOrder}}
+      CPU {{ cpuAttackOrder }}
       <span class="stone-info">
-        <span :class="{'black-stone': isCpuBlack, 'white-stone': !isCpuBlack, 'stone':true}"></span>
-        X {{cpuStonesNum}}
+        <span
+          :class="{ 'black-stone': isCpuBlack, 'white-stone': !isCpuBlack, stone: true }"
+        ></span>
+        X {{ cpuStonesNum }}
       </span>
     </div>
     <Borad :board="othello.board" :nowloading="nowloading" @emit-cell-click2="onCellClick"></Borad>
     <div class="player-info">
-      You {{playerAttackOrder}} {{playerInfoStr}}
+      You {{ playerAttackOrder }} {{ playerInfoStr }}
       <span class="stone-info">
-        <span :class="{'black-stone': !isCpuBlack, 'white-stone': isCpuBlack, 'stone':true}"></span>
-        X {{plyerStonesNum}}
+        <span
+          :class="{ 'black-stone': !isCpuBlack, 'white-stone': isCpuBlack, stone: true }"
+        ></span>
+        X {{ plyerStonesNum }}
       </span>
     </div>
   </div>
@@ -37,7 +45,7 @@ type DataType = {
 };
 
 let waitTime = (msec: number) => {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve();
     }, msec);
@@ -69,7 +77,7 @@ export default Vue.extend({
   methods: {
     //Promiseを返す
     _reverseStone(cellPos: Pos, color: StoneColor) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         // this.$nextTick(() => {
         //石をひっくり返すのにCSSで1sかけているため時間を待つ
         setTimeout(() => {
@@ -183,7 +191,7 @@ export default Vue.extend({
     },
   },
   watch: {
-    changeTurnFlg: async function (newVal, oldVal) {
+    changeTurnFlg: async function(newVal, oldVal) {
       //resetButtonが押された場合はここでリセット
       if (this.resetFlg) {
         //reset処理
@@ -200,8 +208,8 @@ export default Vue.extend({
         //ここでCPU処理を実行
         let color = this.othello.getTurnColor();
 
-        //1s待つ
-        await waitTime(1000);
+        //1.4s待つ
+        await waitTime(1400);
 
         //CPUの手を取得, 打つ場所がないときはNullが返却される
         let cpuCellPos = this.othello.cpuAlgor();
@@ -251,7 +259,7 @@ export default Vue.extend({
 <style scoped>
 .game-wrraper {
   margin: 0 auto;
-  /* background-color: red; */
+  background-color: red;
   width: 427px;
   position: relative;
 }

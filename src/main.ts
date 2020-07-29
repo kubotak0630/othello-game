@@ -5,6 +5,7 @@ Vue.component(Button.name, Button);
 Vue.component(RadioGroup.name, RadioGroup);
 Vue.component(RadioButton.name, RadioButton);
 // Vue.use(ElementUI);
+import 'normalize.css';
 
 import App from './App.vue';
 import router from './router/router-index';

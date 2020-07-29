@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="cell" @click="onClick">
-      <div v-bind:class="{'black-stone': isBlack, 'white-stone': isWhite, 'stone':true }"></div>
+      <div v-bind:class="{ 'black-stone': isBlack, 'white-stone': isWhite, stone: true }"></div>
     </div>
   </div>
 </template>
