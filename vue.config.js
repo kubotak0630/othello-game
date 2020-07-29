@@ -1,5 +1,5 @@
 const path = require('path');
-const outputPath = path.resolve(__dirname, 'dist');
+const outputPath = path.resolve(__dirname, 'docs'); //for github Pages
 
 module.exports = {
   //source Map
@@ -9,6 +9,7 @@ module.exports = {
   css: {
     extract: false, //cssをjsフィルにマージ
   },
+  outputDir: 'docs',
   pages: {
     index: {
       // エントリーポイントの設定
