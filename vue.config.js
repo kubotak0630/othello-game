@@ -9,6 +9,7 @@ module.exports = {
   css: {
     extract: false, //cssをjsフィルにマージ
   },
+  publicPath: '/othello-game/',
   outputDir: 'docs',
   pages: {
     index: {
