@@ -40,8 +40,8 @@ export default Vue.extend({
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .cell {
-  width: 50px;
-  height: 50px;
+  width: 43px;
+  height: 43px;
   border: 3px solid black;
   background-color: darkgreen;
   margin: 0 -3px -3px 0;
@@ -50,8 +50,8 @@ export default Vue.extend({
 }
 
 .stone {
-  width: 44px;
-  height: 44px;
+  width: 37px;
+  height: 37px;
   border-radius: 50%;
   position: absolute;
   top: 3px;

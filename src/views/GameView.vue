@@ -259,14 +259,15 @@ export default Vue.extend({
 <style scoped>
 .game-wrraper {
   margin: 0 auto;
-  background-color: red;
-  width: 427px;
+  width: 375px;
   position: relative;
+  padding: 6px 2px;
 }
 
 .button-container {
   display: flex;
   justify-content: space-between;
+  width: 371px;
   margin-bottom: 6px;
 }
 
@@ -275,7 +276,7 @@ export default Vue.extend({
 } */
 
 .cpu-info {
-  width: 417px;
+  width: 361px;
   background-color: #8b4513;
   text-align: left;
   line-height: 50px;
@@ -285,7 +286,7 @@ export default Vue.extend({
 }
 
 .player-info {
-  width: 417px;
+  width: 361px;
   /* height: 50px; */
   background-color: #8b4513;
   text-align: left;
