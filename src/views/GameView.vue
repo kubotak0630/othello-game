@@ -259,7 +259,8 @@ export default Vue.extend({
 <style scoped>
 .game-wrraper {
   margin: 0 auto;
-  width: 375px;
+  /* 371+2+2=375 */
+  width: 371px;
   position: relative;
   padding: 6px 2px;
 }
