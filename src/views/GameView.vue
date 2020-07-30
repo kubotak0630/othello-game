@@ -270,6 +270,7 @@ export default Vue.extend({
 /* 拡大 */
 #scale-wrraper2 {
   transform-origin: 50% 50%;
+  /* scaleは初期化時に動的な値を設定 */
   /* transform: scale(1.104, 1.104); */
   position: relative;
 }
