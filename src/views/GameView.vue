@@ -1,31 +1,27 @@
 <template>
-  <div class="game-wrraper">
-    <div class="button-container">
-      <el-button type="primary" class="menu-button" @click="onTitleButtonClick"
-        >タイトルに戻る</el-button
-      >
-      <el-button type="primary" class="reset-button" @click="onResetButtonClick"
-        >リセット</el-button
-      >
-    </div>
-    <div class="cpu-info">
-      CPU {{ cpuAttackOrder }}
-      <span class="stone-info">
-        <span
-          :class="{ 'black-stone': isCpuBlack, 'white-stone': !isCpuBlack, stone: true }"
-        ></span>
-        X {{ cpuStonesNum }}
-      </span>
-    </div>
-    <Borad :board="othello.board" :nowloading="nowloading" @emit-cell-click2="onCellClick"></Borad>
-    <div class="player-info">
-      You {{ playerAttackOrder }} {{ playerInfoStr }}
-      <span class="stone-info">
-        <span
-          :class="{ 'black-stone': !isCpuBlack, 'white-stone': isCpuBlack, stone: true }"
-        ></span>
-        X {{ plyerStonesNum }}
-      </span>
+  <div id="scale-wrraper2">
+    <div class="scale-wrraper">
+      <div class="game-wrraper">
+        <div class="button-container">
+          <el-button type="primary" class="menu-button" @click="onTitleButtonClick">タイトルに戻る</el-button>
+          <el-button type="primary" class="reset-button" @click="onResetButtonClick">リセット</el-button>
+        </div>
+        <div class="cpu-info">
+          CPU {{ cpuAttackOrder }}
+          <span class="stone-info">
+            <span :class="{ 'black-stone': isCpuBlack, 'white-stone': !isCpuBlack, stone: true }"></span>
+            X {{ cpuStonesNum }}
+          </span>
+        </div>
+        <Borad :board="othello.board" :nowloading="nowloading" @emit-cell-click2="onCellClick"></Borad>
+        <div class="player-info">
+          You {{ playerAttackOrder }} {{ playerInfoStr }}
+          <span class="stone-info">
+            <span :class="{ 'black-stone': !isCpuBlack, 'white-stone': isCpuBlack, stone: true }"></span>
+            X {{ plyerStonesNum }}
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -45,7 +41,7 @@ type DataType = {
 };
 
 let waitTime = (msec: number) => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve();
     }, msec);
@@ -71,13 +67,27 @@ export default Vue.extend({
     //CPUが先行のときのためにchangeTurnFlgを変化させwatchイベントを呼ぶ
     this.changeTurnFlg = !this.changeTurnFlg;
   },
+  mounted() {
+    console.log('--- Call mounted ----');
+    let deviceWidth = document.documentElement.clientWidth;
+    console.log(deviceWidth);
+    let scaleX = deviceWidth / 375;
+    if (scaleX > 1.5) {
+      scaleX = 1.5;
+    }
+    //iphone5sがdevice_width.x =320 なのでこの場合は0.85333
+    else if (scaleX < 0.85) {
+      scaleX = 0.8;
+    }
+    document.getElementById('scale-wrraper2')!.style.transform = `scale(${scaleX})`;
+  },
   destroyed() {
     console.log('--- Call destroyed ----');
   },
   methods: {
     //Promiseを返す
     _reverseStone(cellPos: Pos, color: StoneColor) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         // this.$nextTick(() => {
         //石をひっくり返すのにCSSで1sかけているため時間を待つ
         setTimeout(() => {
@@ -191,7 +201,7 @@ export default Vue.extend({
     },
   },
   watch: {
-    changeTurnFlg: async function(newVal, oldVal) {
+    changeTurnFlg: async function (newVal, oldVal) {
       //resetButtonが押された場合はここでリセット
       if (this.resetFlg) {
         //reset処理
@@ -257,11 +267,24 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+/* 拡大 */
+#scale-wrraper2 {
+  transform-origin: 50% 50%;
+  /* transform: scale(1.104, 1.104); */
+  position: relative;
+}
+/* 左右中央配置 */
+.scale-wrraper {
+  top: 0%;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+}
 .game-wrraper {
-  margin: 0 auto;
+  /* margin: 0 auto; */
   /* 371+2+2=375 */
   width: 371px;
-  position: relative;
+  /* position: relative; */
   padding: 6px 2px;
 }
 
