@@ -3,12 +3,13 @@ import Board, { StoneColor, Pos } from './board';
 export default class Othello {
   private _board: Board;
   private _turn: StoneColor;
-  private _cpuColor: StoneColor;
+  private _cpuColor: StoneColor; //この値で先行,後攻が決まる
 
-  constructor() {
+  //Playerの先行,後攻をplayerColorで設定
+  constructor(playerColor: StoneColor) {
     this._board = new Board();
-    this._turn = 'Black'; //黒が先行
-    this._cpuColor = 'White';
+    this._turn = 'Black'; //黒が先行のルール
+    this._cpuColor = playerColor == 'Black' ? 'White' : 'Black';
   }
   get board() {
     return this._board;

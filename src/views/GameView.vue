@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
 import Borad from '../components/VBoard.vue';
 import Othello from '../othello';
 import { Pos, StoneColor } from '../board';
@@ -53,9 +53,16 @@ export default Vue.extend({
   components: {
     Borad,
   },
+  props: {
+    playerColor: {
+      type: String as PropType<StoneColor>,
+      // required: true,
+      default: 'Black',
+    },
+  },
   data(): DataType {
     return {
-      othello: new Othello(),
+      othello: new Othello(this.playerColor as StoneColor),
       nowloading: false,
       //値に意味はない。ターン変更時(setChangeTurn)でフラグを反転させる。watchイベントをコールするための変数
       changeTurnFlg: false,
@@ -82,7 +89,7 @@ export default Vue.extend({
     document.getElementById('scale-wrraper2')!.style.transform = `scale(${scaleX})`;
   },
   destroyed() {
-    console.log('--- Call destroyed ----');
+    console.log('--- Call destroyed at GameView----');
   },
   methods: {
     //Promiseを返す

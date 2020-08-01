@@ -30,10 +30,16 @@ export default Vue.extend({
       radio: 0,
     };
   },
+  destroyed() {
+    console.log('--- Call destroyed at TitleView----');
+  },
   methods: {
     onStartClick() {
-      // this.$router.push({ name: 'Game', params: { noDirect: true } });
-      this.$router.push({ name: 'Game' });
+      if (this.radio == 0) {
+        this.$router.push({ name: 'Game', params: { playerColor: 'Black' } });
+      } else {
+        this.$router.push({ name: 'Game', params: { playerColor: 'White' } });
+      }
     },
     onChangeRadio(evt: number) {
       console.log(evt);
