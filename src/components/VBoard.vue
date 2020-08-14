@@ -1,10 +1,10 @@
 <template>
   <div class="borad">
     <!-- 配列は追加や削除がないのでkeyはindexをそのまま利用(重複しなければなんでもいい) -->
-    <div class="container" v-for="y in 8" :key="(y + 1) * 8">
+    <div class="container" v-for="y in 8" :key="y">
       <VCell
         v-for="x in 8"
-        :key="x"
+        :key="(x-1)+(y-1)*bordWidth"
         :cell="board.getCell({ x: x - 1, y: y - 1 })"
         @emit-cell-click="onCellClick"
       ></VCell>
@@ -37,7 +37,10 @@ export default Vue.extend({
     },
   },
   data(): DataType {
-    return {};
+    return {
+      bordHeight: Board.HEIGHT,
+      bordWidth: Board.WIDTH,
+    };
   },
   methods: {
     // 親のGameViewにイベントを伝える。処理中のマウス入力は無視する
