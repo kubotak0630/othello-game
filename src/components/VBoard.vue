@@ -1,9 +1,9 @@
 <template>
   <div class="borad">
     <!-- 配列は追加や削除がないのでkeyはindexをそのまま利用(重複しなければなんでもいい) -->
-    <div class="container" v-for="y in 8" :key="y">
+    <div class="container" v-for="y in bordHeight" :key="y">
       <VCell
-        v-for="x in 8"
+        v-for="x in bordWidth"
         :key="(x-1)+(y-1)*bordWidth"
         :cell="board.getCell({ x: x - 1, y: y - 1 })"
         @emit-cell-click="onCellClick"
